@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getBookings, addBooking } from '@/lib/graph';
+import { getBookings, addBooking } from '@/lib/storage';
 import { verifyToken, COOKIE_NAME } from '@/lib/session';
 import { isBlockedDay } from '@/lib/holidays';
 import type { NewBooking } from '@/lib/types';
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const bookings = await getBookings();
+    const bookings = getBookings();
     return NextResponse.json({ bookings });
   } catch (err) {
     console.error('[GET /api/bookings]', err);
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
   // ── Check for slot conflict ───────────────────────────────────────────────
   let existing;
   try {
-    existing = await getBookings();
+    existing = getBookings();
   } catch (err) {
     console.error('[POST /api/bookings] getBookings failed:', err);
     return NextResponse.json({ error: 'Unable to verify slot availability.' }, { status: 503 });
@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
   };
 
   try {
-    await addBooking(newBooking);
+    addBooking(newBooking);
   } catch (err) {
     console.error('[POST /api/bookings] addBooking failed:', err);
     return NextResponse.json({ error: 'Failed to save booking. Please try again.' }, { status: 503 });

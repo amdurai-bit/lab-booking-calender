@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllowedEmails } from '@/lib/graph';
+import { getAllowedEmails } from '@/lib/storage';
 import { signToken, COOKIE_NAME, COOKIE_MAX_AGE } from '@/lib/session';
 
 export async function POST(req: NextRequest) {
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
 
   let allowedEmails: Set<string>;
   try {
-    allowedEmails = await getAllowedEmails();
+    allowedEmails = getAllowedEmails();
   } catch (err) {
     console.error('[auth/login] Failed to fetch AllowedUsers:', err);
     return NextResponse.json(

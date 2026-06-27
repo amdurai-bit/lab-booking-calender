@@ -1,19 +1,23 @@
 # Dependencies
-node_modules/
+**/node_modules/
 
 # Next.js build output
-.next/
-out/
+**/.next/
+**/out/
 
 # Environment – never commit secrets
-.env
-.env.local
-.env.*.local
+**/.env
+**/.env.local
+**/.env.*.local
 
 # Debug logs
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+
+# TypeScript build info
+*.tsbuildinfo
+next-env.d.ts
 
 # OS
 .DS_Store
@@ -21,3 +25,6 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+# Lock files (optional — remove these lines if you want to commit them)
+package-lock.json
