@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 43 33% 96%;
+    --foreground: 20 14% 15%;
+    --card: 40 30% 98%;
+    --card-foreground: 20 14% 15%;
+    --popover: 40 30% 98%;
+    --popover-foreground: 20 14% 15%;
+    --primary: 25 60% 30%;
+    --primary-foreground: 40 30% 97%;
+    --secondary: 35 25% 88%;
+    --secondary-foreground: 20 14% 20%;
+    --muted: 35 20% 90%;
+    --muted-foreground: 20 10% 45%;
+    --accent: 30 45% 85%;
+    --accent-foreground: 20 14% 15%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 20% 82%;
+    --input: 30 20% 85%;
+    --ring: 25 60% 30%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 14% 8%;
+    --foreground: 40 25% 88%;
+    --card: 20 12% 12%;
+    --card-foreground: 40 25% 88%;
+    --popover: 20 12% 12%;
+    --popover-foreground: 40 25% 88%;
+    --primary: 30 50% 55%;
+    --primary-foreground: 20 14% 8%;
+    --secondary: 20 12% 18%;
+    --secondary-foreground: 40 25% 88%;
+    --muted: 20 12% 18%;
+    --muted-foreground: 40 15% 60%;
+    --accent: 25 30% 22%;
+    --accent-foreground: 40 25% 88%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 12% 22%;
+    --input: 20 12% 22%;
+    --ring: 30 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-serif;
+  }
+}
+
+/* Manuscript editor */
+.manuscript-text {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: hsl(var(--foreground));
+}
+
+/* Image viewer */
+.image-viewer {
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+}
+
+/* Archive-style card */
+.archive-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(112, 66, 20, 0.08);
+}
+
+/* Highlight box on image for line-linking */
+.ocr-highlight {
+  position: absolute;
+  border: 2px solid hsl(25, 80%, 50%);
+  background: hsla(25, 80%, 50%, 0.12);
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.ocr-highlight.active {
+  background: hsla(25, 80%, 50%, 0.25);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
